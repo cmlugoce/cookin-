@@ -30,11 +30,12 @@ mongoose
     //initiates app
 const app = express();
 const corsOptions = {
-    origin: 'https://peaceful-crag-22307.herokuapp.com',
+    origin: ' http://localhost:3000',
     credentials: true
 };
 app.use(cors(corsOptions))
-
+// var distDir = __dirname + "/dist/";
+//  app.use(express.static(distDir))
 //set up JWT middleware
 
 app.use(async(req, res, next)=>{
