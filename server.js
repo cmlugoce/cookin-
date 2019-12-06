@@ -30,7 +30,7 @@ mongoose
     //initiates app
 const app = express();
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://peaceful-crag-22307.herokuapp.com',
     credentials: true
 };
 app.use(cors(corsOptions))
