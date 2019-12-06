@@ -85,3 +85,9 @@ const PORT = process.env.PORT || 4444;
 app.listen(PORT, ()=>{
     console.log(`Server Listening on Port ${PORT}`);
 })
+
+var StatsD = require('hot-shots');
+var dogstatsd = new StatsD();
+
+// Increment a counter.
+dogstatsd.increment('page.views')
