@@ -13,7 +13,11 @@ import Profile from './components/Profile/Profile';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import RecipePage from './components/Recipe/RecipePage';
+var StatsD = require('hot-shots');
+var dogstatsd = new StatsD();
 
+// Increment a counter.
+dogstatsd.increment('page.views')
 const client = new ApolloClient({
     uri: "https://peaceful-crag-22307.herokuapp.com/graphql",
     fetchOptions: {
