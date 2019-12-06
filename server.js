@@ -5,6 +5,7 @@ require('dotenv').config({path: 'variables.env'});
 const Recipe = require('./models/Recipe');
 const User = require('./models/User');
 const cors = require('cors');
+const path = require('path')
 
 const jwt = require('jsonwebtoken');
 // connect graphql
@@ -34,9 +35,7 @@ const corsOptions = {
     credentials: true
 };
 app.use(cors(corsOptions))
-// var distDir = __dirname + "/dist/";
-//  app.use(express.static(distDir))
-//set up JWT middleware
+
 
 app.use(async(req, res, next)=>{
     const token = req.headers['authorization'];
@@ -73,7 +72,14 @@ context: {
 
 }))
 );
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
 
+    app.get('*', (req, res)=>
+    {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 const PORT = process.env.PORT || 4444;
 
 app.listen(PORT, ()=>{
